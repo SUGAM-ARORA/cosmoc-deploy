@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "cosmocloud-deploy.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "cosmocloud-deploy.fullname" . }}-backend:{{ .Values.backend.service.port }}']
   restartPolicy: Never

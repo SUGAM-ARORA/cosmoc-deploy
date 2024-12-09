@@ -1,4 +1,4 @@
-{{- if .Values.autoscaling.enabled }}
+{{- if .Values.autoscaling.enabled | default false }}
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -10,8 +10,8 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: {{ include "cosmocloud-deploy.fullname" . }}
-  minReplicas: {{ .Values.autoscaling.minReplicas }}
-  maxReplicas: {{ .Values.autoscaling.maxReplicas }}
+  minReplicas: {{ .Values.autoscaling.minReplicas | default 1 }}
+  maxReplicas: {{ .Values.autoscaling.maxReplicas | default 10 }}
   metrics:
     {{- if .Values.autoscaling.targetCPUUtilizationPercentage }}
     - type: Resource
@@ -19,7 +19,7 @@ spec:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: {{ .Values.autoscaling.targetCPUUtilizationPercentage }}
+          averageUtilization: {{ .Values.autoscaling.targetCPUUtilizationPercentage | default 80 }}
     {{- end }}
     {{- if .Values.autoscaling.targetMemoryUtilizationPercentage }}
     - type: Resource
@@ -27,6 +27,7 @@ spec:
         name: memory
         target:
           type: Utilization
-          averageUtilization: {{ .Values.autoscaling.targetMemoryUtilizationPercentage }}
+          averageUtilization: {{ .Values.autoscaling.targetMemoryUtilizationPercentage | default 80 }}
     {{- end }}
 {{- end }}
+

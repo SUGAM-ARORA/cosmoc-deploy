@@ -5,7 +5,7 @@ metadata:
   labels:
     app: backend
 spec:
-  replicas: {{ .Values.replicas }}
+  replicas: {{ .Values.backend.replicas | default 1 }}
   selector:
     matchLabels:
       app: backend
@@ -16,10 +16,10 @@ spec:
     spec:
       containers:
       - name: backend
-        image: {{ .Values.backend.image }}
+        image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
         env:
         - name: REDIS_URI
-          value: {{ .Values.backend.env.REDIS_URI }}
+          value: "{{ .Values.backend.env.REDIS_URI }}"
         ports:
         - containerPort: {{ .Values.backend.service.port }}
 

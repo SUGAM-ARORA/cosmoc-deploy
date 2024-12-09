@@ -5,7 +5,7 @@ metadata:
   labels:
     app: redis
 spec:
-  replicas: {{ .Values.replicas }}
+  replicas: {{ .Values.redis.replicas | default 1 }}  # Default to 1 replica if not defined
   selector:
     matchLabels:
       app: redis
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: redis
-        image: {{ .Values.redis.image }}
+        image: {{ .Values.redis.image.repository }}:{{ .Values.redis.image.tag | default "latest" }}  # Ensure image is pulled from values.yaml
         ports:
         - containerPort: {{ .Values.redis.service.port }}
 

@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "cosmoc-deploy.fullname" . }}
+  name: {{ include "cosmocloud-deploy.fullname" . }}
   labels:
-    {{- include "cosmoc-deploy.labels" . | nindent 4 }}
+    {{- include "cosmocloud-deploy.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "cosmoc-deploy.fullname" . }}
+    name: {{ include "cosmocloud-deploy.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

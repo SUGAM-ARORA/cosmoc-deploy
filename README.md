@@ -2,11 +2,11 @@
 
 
 
-# Cosmoc-Deploy Helm Chart
+# Cosmocloud-Deploy Helm Chart
 
 ## Introduction
 
-`cosmoc-deploy` is a Helm chart designed to deploy a complete application stack consisting of:
+`Cosmocloud-deploy` is a Helm chart designed to deploy a complete application stack consisting of:
 - **Backend**: A scalable backend service.
 - **Frontend**: A user-friendly frontend service.
 - **Redis**: A fast in-memory database for caching and data storage.
@@ -45,8 +45,8 @@ This chart is structured for simplicity, scalability, and modularity, leveraging
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/SUGAM-ARORA/cosmoc-deploy.git
-cd cosmoc-deploy
+git clone https://github.com/SUGAM-ARORA/Cosmocloud-deploy.git
+cd Cosmocloud-deploy
 ```
 
 ### 2. Lint the Helm Chart
@@ -122,7 +122,7 @@ helm install testapp . -f custom-values.yaml
 
 ## File Structure
 ```
-cosmoc-deploy/
+Cosmocloud-deploy/
 ├── Chart.yaml            # Helm chart metadata
 ├── values.yaml           # Default configuration values
 ├── templates/            # Kubernetes resource templates

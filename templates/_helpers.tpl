@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "cosmoc-deploy.name" -}}
+{{- define "cosmocloud-deploy.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "cosmoc-deploy.fullname" -}}
+{{- define "cosmocloud-deploy.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "cosmoc-deploy.chart" -}}
+{{- define "cosmocloud-deploy.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "cosmoc-deploy.labels" -}}
-helm.sh/chart: {{ include "cosmoc-deploy.chart" . }}
-{{ include "cosmoc-deploy.selectorLabels" . }}
+{{- define "cosmocloud-deploy.labels" -}}
+helm.sh/chart: {{ include "cosmocloud-deploy.chart" . }}
+{{ include "cosmocloud-deploy.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "cosmoc-deploy.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "cosmoc-deploy.name" . }}
+{{- define "cosmocloud-deploy.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "cosmocloud-deploy.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "cosmoc-deploy.serviceAccountName" -}}
+{{- define "cosmocloud-deploy.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "cosmoc-deploy.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "cosmocloud-deploy.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

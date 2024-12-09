@@ -45,8 +45,8 @@ This chart is structured for simplicity, scalability, and modularity, leveraging
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/SUGAM-ARORA/Cosmocloud-deploy.git
-cd Cosmocloud-deploy
+git clone https://github.com/SUGAM-ARORA/cosmocloud-deploy.git
+cd cosmocloud-deploy
 ```
 
 ### 2. Lint the Helm Chart
